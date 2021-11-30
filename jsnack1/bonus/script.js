@@ -4,7 +4,6 @@
 let my_firstNames = ['Claudio', 'Giuseppe', 'Francesca', 'Chiara', 'Elisabetta', 'Thomas', 'Gianfranco', 'Bogdan'];
 //PRENDO UNA LISTA DI COGNOMI
 let my_surnames = ['Andriani', 'Pater', 'Gatti', 'Passaro', 'Daho', 'De Luca', 'Zola', 'Marian'];
-
 function createButton () {
     return document.createElement('button');
 }
@@ -34,50 +33,55 @@ function stampaLista (names_and_surnames) {
     }
     return main_div;
 }
+//STAMPA LISTA APERTURA PAGINA
 const container = document.querySelector('.container');
 const title = document.createElement('h1');
-title.innerHTML = 'Ecco la tua lista di invitati completa.';
-//ottengo nomi completi
-let my_fullnames = getFullNames(my_firstNames,my_surnames);
 const btn = createButton();
-btn.innerHTML = 'vuoi inserire un nuovo nome ed un nuovo cognome?'
-container.prepend(title);
+let my_fullnames = getFullNames(my_firstNames,my_surnames);
 let main_div = stampaLista(my_fullnames);
+title.innerHTML = 'Ecco la tua lista di invitati completa.';
+btn.innerHTML = 'vuoi inserire un nuovo nome ed un nuovo cognome?'
 main_div.classList.add('main-div');
+container.prepend(title);
 container.append(main_div);
 container.append(btn);
+//FINE STAMPA LISTA APERTURA PAGINA
+// CLICK --> SI VUOLE INSERIRE NUOVO NOME E COGNOME
 btn.addEventListener('click',function() {
     btn.disabled = true;
     const new_div = createDiv();
-    // new_div.classList.add('new-input-container');
     const inputName = document.createElement('input');
+    const inputSurname = document.createElement('input');
+    const new_btn = createButton();
+    const error_div = createDiv();
     inputName.type = 'text';
     inputName.placeholder = 'inserisci il nuovo nome';
     inputName.size = inputName.placeholder.length;
-    const inputSurname = document.createElement('input');
     inputSurname.type = 'text';
     inputSurname.placeholder = 'inserisci il nuovo cognome';
     inputSurname.size = inputSurname.placeholder.length;
-    const new_btn = createButton();
     new_btn.innerHTML = 'Ricarica lista con nuovo invitato';
     new_div.append(inputName,inputSurname,new_btn);
     container.append(new_div);
-    const error_div = createDiv();
+    // AGGIUNTA NUOVO INVITATO
     new_btn.addEventListener('click',function() {
         if (inputName.value != '' && inputSurname.value != '') {
+            btn.disabled = false;
             error_div.innerHTML = '';
+            // RIMUOVI VECCHIA LISTA
+            container.removeChild(main_div);
+            container.removeChild(new_div);
+            // STAMPA NUOVA LISTA
             my_firstNames.push(inputName.value);
             my_surnames.push(inputSurname.value);
             my_fullnames = getFullNames(my_firstNames,my_surnames);
-            container.removeChild(main_div);
-            container.removeChild(new_div);
             main_div = stampaLista(my_fullnames);
             container.insertBefore(main_div,btn);
-            btn.disabled = false;
-        } else {
+        } else { //CAMPO VUOTO (O NOME O COGNOME, NON HA IMPORTANZA)!
             error_div.classList.add('error')
             error_div.innerHTML = 'Errore! Inserisci sia il nome che il cognome e poi clicca su Ricarica lista con nuovo intato'
             new_div.append(error_div);
         }
     });
+    // FINE: AGGIUNTA NUOVO INVITATO
 });

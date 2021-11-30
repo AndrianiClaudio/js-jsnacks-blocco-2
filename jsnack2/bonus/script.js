@@ -30,12 +30,8 @@ for (let i = 0; i < intArray.length; i += 1) {
     div.append(span);
     main_div.append(div);
 }
-// for (let i = 1; i < intArray.length; i += 2) {
-//     const div = createDiv();
-//     const span = createSpan();
-//     span.innerHTML = `elemento posizione ${i}: ${intArray[i]}`;
-//     div.append(span);
-//     main_div.append(div);
-//     //calcolo somma
-//     sum += intArray[i];
-// }
+let sum_div = createDiv();
+let sum_span = createSpan();
+sum_span.innerHTML = `<strong>La somma degli elementi (posizione in array dispari) é pari a: ${sum}</strong>`;
+sum_div.append(sum_span);
+container.append(sum_div);

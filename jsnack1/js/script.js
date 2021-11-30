@@ -1,9 +1,8 @@
 //Generatore di “nomi cognomi” casuali: prendendo una lista di nomi e una lista di cognomi, Gatsby vuole generare una falsa lista di invitati.
-
 //PRENDO UNA LISTA DI NOMI
 //PRENDO UNA LISTA DI COGNOMI
 const firstName = ['Claudio', 'Giuseppe', 'Francesca', 'Chiara', 'Elisabetta', 'Thomas', 'Gianfranco', 'Bogdan'];
-const surname = ['Andriani','Pater','Gatti','Passaro','Daho','De Luca','Zola','Marian']
+const surname = ['Andriani','Pater','Gatti','Passaro','Daho','De Luca','Zola','Marian'];
 //si presume le lunghezze degli array saranno uguali
 const length = firstName.length;
 const fullname = []

@@ -11,9 +11,6 @@ const length = firstName.length;
 const fullname = []
 // GENERO UNA FALSA LISTA DI INVITATI
 for(let i=0;i<length;i++) {
-    fullname[i]=firstName[i] + ' ' + surname[i];
+    fullname[i] = firstName[getRndInteger(0, firstName.length-1)] + ' ' + surname[getRndInteger(0, surname.length-1)];
     console.log(`Invitato #${i + 1}: ${fullname[i]}`);
-}
-for (let i = 0; i < fullname.length; i++) {
-    console.log(fullname[getRndInteger(0,firstName.length -1)]);
 }
